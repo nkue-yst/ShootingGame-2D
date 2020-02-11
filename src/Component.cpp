@@ -8,7 +8,7 @@ Component::Component(class Actor* owner, int update_order)
 
 Component::~Component()
 {
-
+    owner_->removeComponent(this);
 }
 
 void Component::update(float dt)

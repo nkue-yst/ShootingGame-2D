@@ -23,3 +23,12 @@ void Actor::update(float dt)
 {
 
 }
+
+void Actor::removeComponent(Component* component)
+{
+    auto iter = std::find(components_.begin(), components_.end(), component);
+    if (iter != components_.end())
+    {
+        components_.erase(iter);
+    }
+}

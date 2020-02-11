@@ -5,6 +5,7 @@
 Game::Game()
     :actors_(NULL)
     ,window_(nullptr)
+    ,context_(NULL)
     ,ticks_count_(0)
     ,is_running_(true)
     ,is_updating_actor_(false)

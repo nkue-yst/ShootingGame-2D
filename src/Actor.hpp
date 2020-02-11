@@ -21,7 +21,7 @@ public:
     //virtual void updateActor(float dt);  // アクター自身の更新
 
     //void addComponent(class Component* component);
-    //void removeComponent(class Component* component);
+    void removeComponent(class Component* component);
 
     const State getState() const { return state_; }
     void setPosition(const Vec2& pos) { position_ = pos; }
