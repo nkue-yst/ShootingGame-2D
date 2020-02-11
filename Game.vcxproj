@@ -14,11 +14,16 @@
     <ClInclude Include="src\Actor.hpp" />
     <ClInclude Include="src\Component.hpp" />
     <ClInclude Include="src\Game.hpp" />
-    <ClInclude Include="src\Vec2.hpp" />
+    <ClInclude Include="src\Math.hpp" />
+    <ClInclude Include="src\MoveComponent.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Actor.cpp" />
+    <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Math.cpp" />
+    <ClCompile Include="src\MoveComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

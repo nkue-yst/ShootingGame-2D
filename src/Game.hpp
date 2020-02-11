@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <SDL.h>
 
 class Game
@@ -10,11 +11,20 @@ public:
     void run();
     void shutdown();
 
+    void addActor(class Actor* actor);
+    void removeActor(class Actor* actor);
+
 private:
-    void processInput();
+    void inputKeys();
     void updateGame();
-    void generateOutput();
+    void draw();
+
+    std::vector<class Actor*> actors_;
+    std::vector<class Actor*> waiting_actors_;
 
     SDL_Window* window_;
-    bool isRunning_;
+    SDL_GLContext context_;
+    Uint32 ticks_count_;
+    bool is_running_;
+    bool is_updating_actor_;
 };
