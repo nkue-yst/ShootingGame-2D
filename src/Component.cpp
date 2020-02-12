@@ -4,7 +4,9 @@
 Component::Component(class Actor* owner, int update_order)
     :owner_(owner)
     ,update_order_(update_order)
-{}
+{
+    owner_->addComponent(this);
+}
 
 Component::~Component()
 {

@@ -1,10 +1,14 @@
 #include "Game.hpp"
 #include <GL/glew.h>
 #include "Actor.hpp"
+#include "DrawComponent.hpp"
+#include "Shader.hpp"
 #include "VertexArray.hpp"
 
 Game::Game()
     :actors_(NULL)
+    ,shader_(nullptr)
+    ,verts_(nullptr)
     ,window_(nullptr)
     ,context_(NULL)
     ,ticks_count_(0)
@@ -18,7 +22,7 @@ bool Game::initialize()
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
     {
-        SDL_Log("SDLを初期化できませんでした. : %s", SDL_GetError());
+        SDL_Log("Failed to initialize SDL2 : %s", SDL_GetError());
         return false;
     }
 
@@ -40,22 +44,35 @@ bool Game::initialize()
         720,
         SDL_WINDOW_OPENGL
     );
+
+    if (!window_)
+    {
+        SDL_Log("Failed to create window. : %s", SDL_GetError());
+        return false;
+    }
+
     context_ = SDL_GL_CreateContext(window_);
 
     // GLEWの初期化
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK)
     {
-        SDL_Log("GLEWの初期化に失敗しました.");
+        SDL_Log("Failed to initialize GLEW.");
         return false;
     }
-    glGetError();
+    glGetError();    
 
-    if (!window_)
+    // シェーダ読み込み
+    if (!loadShaders())
     {
-        SDL_Log("ウィンドウの作成に失敗しました. : %s", SDL_GetError());
+        SDL_Log("Failed to load shaders.");
         return false;
     }
+
+    // 描画物の作成
+    createVerts();
+
+    ticks_count_ = SDL_GetTicks();
 
     return true;
 }
@@ -101,8 +118,7 @@ void Game::updateGame()
 {
     // フレーム制限(60FPS)
     while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticks_count_ + 16))
-    {
-    }
+        ;
 
     float dt = (SDL_GetTicks() - ticks_count_) / 1000.0f;
     if (dt > 0.05f)
@@ -150,8 +166,16 @@ void Game::draw()
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Draw game
+    shader_->setActive();
+    verts_->setActive();
+
+    for (auto component : d_components_)
+    {
+        component->draw(shader_);
+    }
 
     SDL_GL_SwapWindow(window_);
+
 }
 
 void Game::addActor(Actor* actor)
@@ -183,13 +207,46 @@ void Game::removeActor(Actor* actor)
     }
 }
 
-void Game::createSpriteVerts()
+void Game::addDrawComponent(class DrawComponent* d_component)
+{
+    int own_draw_order = d_component->getDrawOrder();
+    auto iter = d_components_.begin();
+    for (; iter != d_components_.end(); ++iter)
+    {
+        if (own_draw_order < (*iter)->getDrawOrder())
+        {
+            break;
+        }
+    }
+
+    d_components_.insert(iter, d_component);
+}
+
+void Game::removeDrawComponent(class DrawComponent* d_component)
+{
+    auto iter = std::find(d_components_.begin(), d_components_.end(), d_component);
+    d_components_.erase(iter);
+}
+
+bool Game::loadShaders()
+{
+    shader_ = new Shader();
+    if (!shader_->load("src/shader/Basic.vert", "src/shader/Basic.frag"))
+    {
+        return false;
+    }
+
+    shader_->setActive();
+    return true;
+}
+
+void Game::createVerts()
 {
     float vertices[] = {
-        -0.5f,  0.5f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f,  0.0f,  0.0f,  1.0f
+        -0.5f,  0.5f,  0.0f,
+         0.5f,  0.5f,  0.0f,
+         0.5f, -0.5f,  0.0f,
+        -0.5f, -0.5f,  0.0f
     };
 
     unsigned int indices[] = {
@@ -197,5 +254,10 @@ void Game::createSpriteVerts()
         2, 3, 0
     };
 
-    sprite_verts_ = new VertexArray(vertices, 4, indices, 6);
+    verts_ = new VertexArray(vertices, 4, indices, 6);
+}
+
+void Game::loadData()
+{
+
 }

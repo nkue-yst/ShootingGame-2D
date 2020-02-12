@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include <SDL.h>
+#include <vector>
 
 class Game
 {
@@ -14,7 +14,12 @@ public:
     void addActor(class Actor* actor);
     void removeActor(class Actor* actor);
 
-    void createSpriteVerts();
+    void addDrawComponent(class DrawComponent* d_component);
+    void removeDrawComponent(class DrawComponent* d_component);
+
+    bool loadShaders();
+    void createVerts();
+    void loadData();
 
 private:
     void inputKeys();
@@ -24,7 +29,10 @@ private:
     std::vector<class Actor*> actors_;
     std::vector<class Actor*> waiting_actors_;
 
-    class VertexArray* sprite_verts_;
+    std::vector<class DrawComponent*> d_components_;
+
+    class Shader* shader_;
+    class VertexArray* verts_;
 
     SDL_Window* window_;
     SDL_GLContext context_;

@@ -5,7 +5,9 @@ MoveComponent::MoveComponent(class Actor* owner, int update_order)
     :Component(owner, update_order)
     ,angular_speed_(0.0f)
     ,forward_speed_(0.0f)
-{}
+{
+
+}
 
 void MoveComponent::update(float dt)
 {
