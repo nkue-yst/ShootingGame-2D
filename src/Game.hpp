@@ -1,6 +1,9 @@
 #pragma once
 #include <SDL.h>
+#include <string>
+#include <unordered_map>
 #include <vector>
+#include "TestActor.hpp"
 
 class Game
 {
@@ -21,15 +24,20 @@ public:
     void createVerts();
     void loadData();
 
+    SDL_Texture* getTexture(const std::string& file_name);
+
 private:
     void inputKeys();
     void updateGame();
     void draw();
 
+    std::unordered_map<std::string, SDL_Texture*> textures_;
+
     std::vector<class Actor*> actors_;
     std::vector<class Actor*> waiting_actors_;
 
     std::vector<class DrawComponent*> d_components_;
+    class TestActor* ta_;
 
     class Shader* shader_;
     class VertexArray* verts_;

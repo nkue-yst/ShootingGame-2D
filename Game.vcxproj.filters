@@ -38,6 +38,9 @@
     <ClInclude Include="src\DrawComponent.hpp">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="src\TestActor.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -65,6 +68,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\DrawComponent.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestActor.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

@@ -71,6 +71,7 @@ bool Game::initialize()
 
     // •`‰æ•¨‚Ìì¬
     createVerts();
+    loadData();
 
     ticks_count_ = SDL_GetTicks();
 
@@ -259,5 +260,21 @@ void Game::createVerts()
 
 void Game::loadData()
 {
+    ta_ = new TestActor(this);
+}
 
+SDL_Texture* Game::getTexture(const std::string& file_name)
+{
+    SDL_Texture* tex = nullptr;
+
+    auto iter = textures_.find(file_name);
+    if (iter != textures_.end())
+    {
+        tex = iter->second;
+    }
+    else
+    {
+        // Load image from file
+    }
+    return tex;
 }

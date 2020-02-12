@@ -18,6 +18,7 @@
     <ClInclude Include="src\MoveComponent.hpp" />
     <ClInclude Include="src\Shader.hpp" />
     <ClInclude Include="src\DrawComponent.hpp" />
+    <ClInclude Include="src\TestActor.hpp" />
     <ClInclude Include="src\VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +30,7 @@
     <ClCompile Include="src\MoveComponent.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\DrawComponent.cpp" />
+    <ClCompile Include="src\TestActor.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
