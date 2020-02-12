@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include <GL/glew.h>
 #include "Actor.hpp"
+#include "VertexArray.hpp"
 
 Game::Game()
     :actors_(NULL)
@@ -180,4 +181,21 @@ void Game::removeActor(Actor* actor)
         std::iter_swap(iter, actors_.end() - 1);
         actors_.pop_back();
     }
+}
+
+void Game::createSpriteVerts()
+{
+    float vertices[] = {
+        -0.5f,  0.5f,  0.0f,  0.0f,  0.0f,
+         0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+         0.5f, -0.5f,  0.0f,  1.0f,  1.0f,
+        -0.5f, -0.5f,  0.0f,  0.0f,  1.0f
+    };
+
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
+    sprite_verts_ = new VertexArray(vertices, 4, indices, 6);
 }

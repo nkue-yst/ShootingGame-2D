@@ -16,6 +16,7 @@
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Math.hpp" />
     <ClInclude Include="src\MoveComponent.hpp" />
+    <ClInclude Include="src\VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Actor.cpp" />
@@ -24,6 +25,7 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Math.cpp" />
     <ClCompile Include="src\MoveComponent.cpp" />
+    <ClCompile Include="src\VertexArray.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -14,6 +14,8 @@ public:
     void addActor(class Actor* actor);
     void removeActor(class Actor* actor);
 
+    void createSpriteVerts();
+
 private:
     void inputKeys();
     void updateGame();
@@ -21,6 +23,8 @@ private:
 
     std::vector<class Actor*> actors_;
     std::vector<class Actor*> waiting_actors_;
+
+    class VertexArray* sprite_verts_;
 
     SDL_Window* window_;
     SDL_GLContext context_;
