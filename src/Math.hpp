@@ -1,47 +1,17 @@
 #pragma once
+#include <cmath>
+#include <glm/glm.hpp>
 
-class Vec2
-{
-public:
-    Vec2()
-        :x_(0.0f)
-        ,y_(0.0f)
-    {}
+namespace math {
+    // スケール行列作成
+    glm::mat4 createScale(float x_scale, float y_scale, float z_scale);
+    glm::mat4 createScale(float scale);
 
-    explicit Vec2(float x, float y)
-        :x_(x)
-        ,y_(y)
-    {}
+    // 回転行列作成
+    glm::mat4 createRotationX(float theta);
+    glm::mat4 createRotationY(float theta);
+    glm::mat4 createRotationZ(float theta);
 
-    float x_;
-    float y_;
+    // 平行移動行列作成
 
-    static const Vec2 ZERO;
-
-    friend Vec2 operator+(const Vec2& a, const Vec2& b)
-    {
-        return Vec2(a.x_ + b.x_, a.y_ + b.y_);
-    }
-
-    friend Vec2 operator-(const Vec2& a, const Vec2& b)
-    {
-        return Vec2(a.x_ - b.x_, a.y_ - b.y_);
-    }
-
-    friend Vec2 operator*(const Vec2& a, const Vec2& b)
-    {
-        return Vec2(a.x_ * b.x_, a.y_ * b.y_);
-    }
-
-    friend Vec2 operator*(const Vec2& vec, float scalar)
-    {
-        return Vec2(vec.x_ * scalar, vec.y_ * scalar);
-    }
-
-    Vec2& operator+=(const Vec2& right)
-    {
-        x_ += right.x_;
-        y_ += right.y_;
-        return *this;
-    }
-};
+}

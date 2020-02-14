@@ -4,7 +4,8 @@
 
 Actor::Actor(Game* game)
     :state_(EActive)
-    ,position_(Vec2::ZERO)
+    ,need_recompute_world_transform_(true)
+    ,position_(glm::vec2(0, 0))
     ,rotation_(0.0f)
     ,scale_(0.0f)
     ,game_(game)
@@ -64,5 +65,17 @@ void Actor::removeComponent(Component* component)
     if (iter != components_.end())
     {
         components_.erase(iter);
+    }
+}
+
+void Actor::computeWorldTransform()
+{
+    if (need_recompute_world_transform_)
+    {
+        need_recompute_world_transform_ = false;
+
+        world_translation_ = math::createScale(scale_);
+        world_translation_ *= math::createRotationZ(rotation_);
+
     }
 }

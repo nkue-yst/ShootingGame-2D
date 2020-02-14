@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 #include "Actor.hpp"
 #include "DrawComponent.hpp"
 #include "Shader.hpp"
@@ -261,6 +262,8 @@ void Game::createVerts()
 void Game::loadData()
 {
     ta_ = new TestActor(this);
+    ta_ = new TestActor(this);
+    ta_->setPosition(glm::vec2(100.0f, 100.0f));
 }
 
 SDL_Texture* Game::getTexture(const std::string& file_name)
