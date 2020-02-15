@@ -79,9 +79,9 @@ void Actor::computeWorldTransform()
     {
         need_recompute_world_transform_ = false;
 
-        world_translation_ = math::createScale(scale_);
-        world_translation_ *= math::createRotationZ(rotation_);
-        world_translation_ *= math::createTranslation(glm::vec3(position_.x, position_.y, 0.0f));
+        world_translation_ = mat::createScale(scale_);
+        world_translation_ *= mat::createRotationZ(rotation_);
+        world_translation_ *= mat::createTranslation(glm::vec3(position_.x, position_.y, 0.0f));
 
         // 各コンポーネントにワールド変換を通知
         for (auto compo : components_)

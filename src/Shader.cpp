@@ -50,6 +50,17 @@ void Shader::setActive()
     glUseProgram(shader_program_);
 }
 
+void Shader::setMatUniform(const char* name, const glm::mat4& mat)
+{
+    GLuint loc_id = glGetUniformLocation(shader_program_, name);
+    glUniformMatrix4fv(
+        loc_id,
+        1,
+        GL_TRUE,
+        &mat[0][0]
+    );
+}
+
 bool Shader::compileShader(const std::string& file_name, GLenum shader_type, GLuint& out_shader)
 {
     std::ifstream shader_file(file_name);

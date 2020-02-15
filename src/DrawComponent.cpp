@@ -1,6 +1,7 @@
 #include "DrawComponent.hpp"
 #include "Actor.hpp"
 #include "Game.hpp"
+#include "Math.hpp"
 #include "Shader.hpp"
 
 DrawComponent::DrawComponent(class Actor* owner, int draw_order)
@@ -20,6 +21,14 @@ DrawComponent::~DrawComponent()
 
 void DrawComponent::draw(class Shader* shader)
 {
+    glm::mat4 scale_mat = mat::createScale(
+        static_cast<float>(texture_width_),
+        static_cast<float>(texture_height_),
+        1.0f
+    );
+    glm::mat4 world = scale_mat * owner_->getWorldTransform();
+
+    shader->setMatUniform("world_transform", world);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 

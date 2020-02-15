@@ -7,8 +7,3 @@ TestActor::TestActor(Game* game)
 {
     DrawComponent* dc = new DrawComponent(this, 100);
 }
-
-void TestActor::updateActor(float dt)
-{
-
-}

@@ -234,12 +234,14 @@ void Game::removeDrawComponent(class DrawComponent* d_component)
 bool Game::loadShaders()
 {
     shader_ = new Shader();
-    if (!shader_->load("src/shader/Basic.vert", "src/shader/Basic.frag"))
+    if (!shader_->load("src/shader/Transform.vert", "src/shader/Basic.frag"))
     {
         return false;
     }
 
     shader_->setActive();
+    glm::mat4 simple_view_proj = mat::createSimpleView(1280.f, 720.f);
+    shader_->setMatUniform("view_transform", simple_view_proj);
     return true;
 }
 

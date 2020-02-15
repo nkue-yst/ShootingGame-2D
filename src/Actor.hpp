@@ -27,6 +27,7 @@ public:
     void computeWorldTransform();
 
     const State getState() const { return state_; }
+    const glm::mat4 getWorldTransform() const { return world_translation_; }
     void setPosition(const glm::vec2& pos) { position_ = pos; }
     const glm::vec2& getPosition() const { return position_; }
     void setRotation(const float rot) { rotation_ = rot; }
