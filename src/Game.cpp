@@ -140,6 +140,7 @@ void Game::updateGame()
     // 待機アクターをactors_に移動
     for (auto actor : waiting_actors_)
     {
+        actor->computeWorldTransform();
         actors_.emplace_back(actor);
     }
     waiting_actors_.clear();

@@ -7,6 +7,7 @@ public:
     virtual ~Component();
 
     virtual void update(float dt);
+    virtual void onUpdateWorldTransform() {}
 
     int getUpdateOrder() const { return update_order_; }
 

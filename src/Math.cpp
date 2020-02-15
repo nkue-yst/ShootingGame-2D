@@ -13,7 +13,7 @@ glm::mat4 math::createScale(float x_scale, float y_scale, float z_scale)
     );
 }
 
-glm::mat4 math::createScale(const float scale)
+glm::mat4 math::createScale(float scale)
 {
     return createScale(scale, scale, scale);
 }
@@ -48,3 +48,12 @@ glm::mat4 math::createRotationZ(float theta)
     );
 }
 
+glm::mat4 math::createTranslation(glm::vec3 trans)
+{
+    return glm::mat4(
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 1.0f, 0.0f,
+        trans.x, trans.y, trans.z, 1.0f
+    );
+}

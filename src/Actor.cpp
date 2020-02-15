@@ -27,7 +27,12 @@ void Actor::update(float dt)
 {
     if (state_ == EActive)
     {
+        computeWorldTransform();
+
         updateComponents(dt);
+        updateActor(dt);
+
+        computeWorldTransform();
     }
 }
 
@@ -76,6 +81,12 @@ void Actor::computeWorldTransform()
 
         world_translation_ = math::createScale(scale_);
         world_translation_ *= math::createRotationZ(rotation_);
+        world_translation_ *= math::createTranslation(glm::vec3(position_.x, position_.y, 0.0f));
 
+        // 各コンポーネントにワールド変換を通知
+        for (auto compo : components_)
+        {
+            compo->onUpdateWorldTransform();
+        }
     }
 }

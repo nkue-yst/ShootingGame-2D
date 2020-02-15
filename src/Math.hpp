@@ -13,5 +13,5 @@ namespace math {
     glm::mat4 createRotationZ(float theta);
 
     // •½sˆÚ“®s—ñì¬
-
+    glm::mat4 createTranslation(glm::vec3 trans);
 }
