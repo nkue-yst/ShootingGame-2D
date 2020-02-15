@@ -8,9 +8,9 @@
 DrawComponent::DrawComponent(class Actor* owner, int draw_order)
     :Component(owner)
     ,texture_(nullptr)
-    ,draw_order_(draw_order)
     ,texture_width_(0)
     ,texture_height_(0)
+    ,draw_order_(draw_order)
 {
     owner_->getGame()->addDrawComponent(this);
 }
@@ -37,6 +37,6 @@ void DrawComponent::draw(class Shader* shader)
 void DrawComponent::setTexture(class Texture* texture)
 {
     texture_ = texture;
-    texture_width_ = texture_->getWidth();
+    texture_width_ = texture->getWidth();
     texture_height_ = texture->getHeight();
 }

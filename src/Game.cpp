@@ -151,7 +151,7 @@ void Game::updateGame()
 
     for (auto actor : actors_)
     {
-        if (actor->getState() == Actor::EDead)
+        if (actor->getState() == Actor::State::EDead)
         {
             dead_actors.emplace_back(actor);
         }

@@ -7,7 +7,7 @@
 class Actor
 {
 public:
-    enum State
+    enum class State
     {
         EPause,
         EActive,
@@ -19,7 +19,7 @@ public:
 
     void update(float dt);  // システムから呼び出す更新関数
     void updateComponents(float dt);  // アクターの持つコンポーネントの更新
-    virtual void updateActor(float dt);  // アクター自身の更新
+    virtual void updateActor(float dt) {}  // アクター自身の更新
 
     void addComponent(class Component* component);
     void removeComponent(class Component* component);

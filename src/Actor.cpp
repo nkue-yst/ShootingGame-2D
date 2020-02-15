@@ -3,7 +3,7 @@
 #include "Game.hpp"
 
 Actor::Actor(Game* game)
-    :state_(EActive)
+    :state_(Actor::State::EActive)
     ,world_translation_()
     ,need_recompute_world_transform_(true)
     ,position_(glm::vec2(0, 0))
@@ -26,7 +26,7 @@ Actor::~Actor()
 
 void Actor::update(float dt)
 {
-    if (state_ == EActive)
+    if (state_ == Actor::State::EActive)
     {
         computeWorldTransform();
 
@@ -43,11 +43,6 @@ void Actor::updateComponents(float dt)
     {
         component->update(dt);
     }
-}
-
-void Actor::updateActor(float dt)
-{
-
 }
 
 void Actor::addComponent(class Component* component)
@@ -85,9 +80,9 @@ void Actor::computeWorldTransform()
         world_translation_ *= mat::createTranslation(glm::vec3(position_.x, position_.y, 0.0f));
 
         // 各コンポーネントにワールド変換を通知
-        for (auto compo : components_)
+        for (auto component : components_)
         {
-            compo->onUpdateWorldTransform();
+            component->onUpdateWorldTransform();
         }
     }
 }
