@@ -14,7 +14,7 @@ VertexArray::VertexArray(const float* verts, unsigned int num_verts, const unsig
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_);
     glBufferData(
         GL_ARRAY_BUFFER,
-        num_verts * 3 * sizeof(float),
+        num_verts * 5 * sizeof(float),
         verts,
         GL_STATIC_DRAW
     );
@@ -36,8 +36,17 @@ VertexArray::VertexArray(const float* verts, unsigned int num_verts, const unsig
         3,
         GL_FLOAT,
         GL_FALSE,
-        sizeof(float) * 3,
+        sizeof(float) * 5,
         0
+    );
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(
+        1,
+        2,
+        GL_FLOAT,
+        GL_FALSE,
+        sizeof(float) * 5,
+        reinterpret_cast<void*>(sizeof(float) * 3)
     );
 }
 

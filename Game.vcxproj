@@ -19,6 +19,7 @@
     <ClInclude Include="src\Shader.hpp" />
     <ClInclude Include="src\DrawComponent.hpp" />
     <ClInclude Include="src\TestActor.hpp" />
+    <ClInclude Include="src\Texture.hpp" />
     <ClInclude Include="src\VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,11 +32,14 @@
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\DrawComponent.cpp" />
     <ClCompile Include="src\TestActor.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shader\Basic.frag" />
     <None Include="src\shader\Basic.vert" />
+    <None Include="src\shader\Sprite.frag" />
+    <None Include="src\shader\Sprite.vert" />
     <None Include="src\shader\Transform.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -87,13 +91,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;$(SolutionDir)lib\glm;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\SOIL\include;$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;$(SolutionDir)lib\glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL2\lib\x86;%(AdditionalLibraryDirectories);$(SolutionDir)lib\GLEW\lib\x86;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL2\lib\x86;%(AdditionalLibraryDirectories);$(SolutionDir)lib\GLEW\lib\x86;$(SolutionDir)lib\SOIL\lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;opengl32.lib;SOIL.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)lib\SDL2\lib\x86\SDL2.dll"  "$(OutDir)" /i /s /y
@@ -108,15 +112,15 @@ xcopy "$(SolutionDir)lib\GLEW\lib\x86\glew32.dll" "$(OutDir)" /i /s /y</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;$(SolutionDir)lib\glm;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\SOIL\include;$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;$(SolutionDir)lib\glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL2\lib\x86;%(AdditionalLibraryDirectories);$(SolutionDir)lib\GLEW\lib\x86;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;opengl32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL2\lib\x86;%(AdditionalLibraryDirectories);$(SolutionDir)lib\GLEW\lib\x86;$(SolutionDir)lib\SOIL\lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);SDL2.lib;SDL2main.lib;opengl32.lib;SOIL.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)lib\SDL2\lib\x86\SDL2.dll"  "$(OutDir)" /i /s /y

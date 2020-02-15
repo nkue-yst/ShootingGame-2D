@@ -41,6 +41,9 @@
     <ClInclude Include="src\TestActor.hpp">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="src\Texture.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -73,6 +76,9 @@
     <ClCompile Include="src\TestActor.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shader\Basic.frag">
@@ -82,6 +88,12 @@
       <Filter>shader</Filter>
     </None>
     <None Include="src\shader\Transform.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="src\shader\Sprite.vert">
+      <Filter>shader</Filter>
+    </None>
+    <None Include="src\shader\Sprite.frag">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>

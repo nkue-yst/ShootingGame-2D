@@ -4,6 +4,7 @@
 
 Actor::Actor(Game* game)
     :state_(EActive)
+    ,world_translation_()
     ,need_recompute_world_transform_(true)
     ,position_(glm::vec2(0, 0))
     ,rotation_(0.0f)

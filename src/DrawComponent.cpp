@@ -3,6 +3,7 @@
 #include "Game.hpp"
 #include "Math.hpp"
 #include "Shader.hpp"
+#include "Texture.hpp"
 
 DrawComponent::DrawComponent(class Actor* owner, int draw_order)
     :Component(owner)
@@ -29,11 +30,13 @@ void DrawComponent::draw(class Shader* shader)
     glm::mat4 world = scale_mat * owner_->getWorldTransform();
 
     shader->setMatUniform("world_transform", world);
+    texture_->setActive();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
-void DrawComponent::setTexture(SDL_Texture* texture)
+void DrawComponent::setTexture(class Texture* texture)
 {
     texture_ = texture;
-    SDL_QueryTexture(texture, nullptr, nullptr, &texture_width_, &texture_height_);
+    texture_width_ = texture_->getWidth();
+    texture_height_ = texture->getHeight();
 }

@@ -4,6 +4,7 @@
 #include "Actor.hpp"
 #include "DrawComponent.hpp"
 #include "Shader.hpp"
+#include "Texture.hpp"
 #include "VertexArray.hpp"
 
 Game::Game()
@@ -234,7 +235,7 @@ void Game::removeDrawComponent(class DrawComponent* d_component)
 bool Game::loadShaders()
 {
     shader_ = new Shader();
-    if (!shader_->load("src/shader/Transform.vert", "src/shader/Basic.frag"))
+    if (!shader_->load("src/shader/Sprite.vert", "src/shader/Sprite.frag"))
     {
         return false;
     }
@@ -269,9 +270,9 @@ void Game::loadData()
     ta_->setPosition(glm::vec2(100.0f, 100.0f));
 }
 
-SDL_Texture* Game::getTexture(const std::string& file_name)
+class Texture* Game::getTexture(const std::string& file_name)
 {
-    SDL_Texture* tex = nullptr;
+    Texture* tex = nullptr;
 
     auto iter = textures_.find(file_name);
     if (iter != textures_.end())
@@ -280,7 +281,16 @@ SDL_Texture* Game::getTexture(const std::string& file_name)
     }
     else
     {
-        // Load image from file
+        tex = new Texture();
+        if (tex->loadImage(file_name))
+        {
+            textures_.emplace(file_name, tex);
+        }
+        else
+        {
+            delete tex;
+            tex = nullptr;
+        }
     }
     return tex;
 }
