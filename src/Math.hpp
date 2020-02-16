@@ -42,6 +42,7 @@ class mat4
 {
 public:
 	float mat_[4][4];
+
 	static const mat4 Identity;
 
 	// ’PˆÊs—ñ‚Å‰Šú‰»

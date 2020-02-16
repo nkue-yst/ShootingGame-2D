@@ -251,10 +251,10 @@ bool Game::loadShaders()
 void Game::createVerts()
 {
     float vertices[] = {
-        -0.5f,  0.5f,  0.0f,
-         0.5f,  0.5f,  0.0f,
-         0.5f, -0.5f,  0.0f,
-        -0.5f, -0.5f,  0.0f
+        -0.5f,  0.5f,  0.f, 0.f, 0.f,
+         0.5f,  0.5f,  0.f, 1.f, 0.f,
+         0.5f, -0.5f,  0.f, 1.f, 1.f
+        -0.5f, -0.5f,  0.f, 0.f, 1.f
     };
 
     unsigned int indices[] = {

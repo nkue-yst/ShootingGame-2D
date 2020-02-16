@@ -5,7 +5,7 @@ using std::sin;
 
 const vec2 vec2::ZERO(0.0f, 0.0f);
 
-float m4_identity[4][4] =
+static float m4_identity[4][4] =
 {
     { 1.0f, 0.0f, 0.0f, 0.0f },
     { 0.0f, 1.0f, 0.0f, 0.0f },
@@ -28,14 +28,14 @@ mat4 mat4::createScale(float x_scale, float y_scale, float z_scale)
 
 mat4 mat4::rotationZ(float theta)
 {
-    float mat[4][4] =
+    float res[4][4] =
     {
         {  cos(theta), sin(theta), 0.0f, 0.0f },
         { -sin(theta), cos(theta), 0.0f, 0.0f },
         {        0.0f,       0.0f, 1.0f, 0.0f },
         {        0.0f,       0.0f, 0.0f, 1.0f }
     };
-    return mat4(mat);
+    return mat4(res);
 }
 
 mat4 mat4::translation(float x, float y, float z)

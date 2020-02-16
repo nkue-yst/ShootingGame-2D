@@ -26,7 +26,7 @@ public:
     void computeWorldTransform();
 
     const State getState() const { return state_; }
-    const mat4 getWorldTransform() const { return world_translation_; }
+    const mat4& getWorldTransform() const { return world_translation_; }
     void setPosition(const vec2& pos) { position_ = pos; }
     const vec2& getPosition() const { return position_; }
     void setRotation(const float rot) { rotation_ = rot; }

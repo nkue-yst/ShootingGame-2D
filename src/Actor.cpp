@@ -8,7 +8,7 @@ Actor::Actor(Game* game)
     ,need_recompute_world_transform_(true)
     ,position_(vec2::ZERO)
     ,rotation_(0.0f)
-    ,scale_(0.0f)
+    ,scale_(1.0f)
     ,game_(game)
 {
     game_->addActor(this);
