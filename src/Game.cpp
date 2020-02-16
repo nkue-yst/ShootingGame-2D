@@ -41,8 +41,8 @@ bool Game::initialize()
         "Game window",
         100,
         100,
-        1280,
-        720,
+        1024,
+        768,
         SDL_WINDOW_OPENGL
     );
 
@@ -237,13 +237,13 @@ void Game::removeDrawComponent(class DrawComponent* d_component)
 bool Game::loadShaders()
 {
     shader_ = new Shader();
-    if (!shader_->load("src/shader/Sprite.vert", "src/shader/Sprite.frag"))
+    if (!shader_->load("src/shader/Basic.vert", "src/shader/Basic.frag"))
     {
         return false;
     }
 
     shader_->setActive();
-    mat4 simple_view_proj = mat4::createSimpleView(1280.f, 720.f);
+    mat4 simple_view_proj = mat4::createSimpleView(1024.f, 768.f);
     shader_->setMatUniform("view_transform", simple_view_proj);
     return true;
 }
@@ -253,7 +253,7 @@ void Game::createVerts()
     float vertices[] = {
         -0.5f,  0.5f,  0.f, 0.f, 0.f,
          0.5f,  0.5f,  0.f, 1.f, 0.f,
-         0.5f, -0.5f,  0.f, 1.f, 1.f
+         0.5f, -0.5f,  0.f, 1.f, 1.f,
         -0.5f, -0.5f,  0.f, 0.f, 1.f
     };
 
