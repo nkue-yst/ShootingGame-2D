@@ -11,6 +11,6 @@ int main(int argc, char** argv)
     }
 
     game.shutdown();
-    
+
     return 0;
 }

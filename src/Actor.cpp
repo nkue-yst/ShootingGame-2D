@@ -6,7 +6,7 @@ Actor::Actor(Game* game)
     :state_(Actor::State::EActive)
     ,world_translation_()
     ,need_recompute_world_transform_(true)
-    ,position_(glm::vec2(0, 0))
+    ,position_(vec2::ZERO)
     ,rotation_(0.0f)
     ,scale_(0.0f)
     ,game_(game)
@@ -75,9 +75,9 @@ void Actor::computeWorldTransform()
     {
         need_recompute_world_transform_ = false;
 
-        world_translation_ = mat::createScale(scale_);
-        world_translation_ *= mat::createRotationZ(rotation_);
-        world_translation_ *= mat::createTranslation(glm::vec3(position_.x, position_.y, 0.0f));
+        world_translation_ = mat4::createScale(scale_);
+        world_translation_ *= mat4::rotationZ(rotation_);
+        world_translation_ *= mat4::translation(position_.x_, position_.y_, 0.0f);
 
         // 各コンポーネントにワールド変換を通知
         for (auto component : components_)

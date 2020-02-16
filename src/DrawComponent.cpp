@@ -22,16 +22,19 @@ DrawComponent::~DrawComponent()
 
 void DrawComponent::draw(class Shader* shader)
 {
-    glm::mat4 scale_mat = mat::createScale(
-        static_cast<float>(texture_width_),
-        static_cast<float>(texture_height_),
-        1.0f
-    );
-    glm::mat4 world = scale_mat * owner_->getWorldTransform();
+    if (texture_)
+    {
+        mat4 scale_mat = mat4::createScale(
+            static_cast<float>(texture_width_),
+            static_cast<float>(texture_height_),
+            1.0f
+        );
+        mat4 world = scale_mat * owner_->getWorldTransform();
 
-    shader->setMatUniform("world_transform", world);
-    texture_->setActive();
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        shader->setMatUniform("world_transform", world);
+        texture_->setActive();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+    }
 }
 
 void DrawComponent::setTexture(class Texture* texture)

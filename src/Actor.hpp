@@ -1,6 +1,5 @@
 #pragma once
 #include <cmath>
-#include <glm/glm.hpp>
 #include <vector>
 #include "Math.hpp"
 
@@ -27,23 +26,23 @@ public:
     void computeWorldTransform();
 
     const State getState() const { return state_; }
-    const glm::mat4 getWorldTransform() const { return world_translation_; }
-    void setPosition(const glm::vec2& pos) { position_ = pos; }
-    const glm::vec2& getPosition() const { return position_; }
+    const mat4 getWorldTransform() const { return world_translation_; }
+    void setPosition(const vec2& pos) { position_ = pos; }
+    const vec2& getPosition() const { return position_; }
     void setRotation(const float rot) { rotation_ = rot; }
     const float getRotation() const { return rotation_; }
     void setScale(const float scl) { scale_ = scl; }
     const float getScale() const { return scale_; }
     class Game* getGame() { return game_; }
 
-    glm::vec2 getForward() const { return glm::vec2(std::cos(rotation_), std::sin(rotation_)); }
+    vec2 getForward() const { return vec2(std::cos(rotation_), std::sin(rotation_)); }
 
 private:
     State state_;
 
-    glm::mat4 world_translation_;
+    mat4 world_translation_;
     bool need_recompute_world_transform_;
-    glm::vec2 position_;
+    vec2 position_;
     float rotation_;
     float scale_;
     

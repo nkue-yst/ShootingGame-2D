@@ -1,6 +1,6 @@
 #include "MoveComponent.hpp"
-#include <glm/glm.hpp>
 #include "Actor.hpp"
+#include "Math.hpp"
 
 MoveComponent::MoveComponent(class Actor* owner, int update_order)
     :Component(owner, update_order)
@@ -16,7 +16,7 @@ void MoveComponent::update(float dt)
     rot += angular_speed_ * dt;
     owner_->setRotation(rot);
 
-    glm::vec2 pos = owner_->getPosition();
+    vec2 pos = owner_->getPosition();
     pos += owner_->getForward() * forward_speed_ * dt;
     owner_->setPosition(pos);
 }

@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include <GL/glew.h>
-#include <glm/glm.hpp>
 #include "Actor.hpp"
 #include "DrawComponent.hpp"
 #include "Shader.hpp"
@@ -8,7 +7,7 @@
 #include "VertexArray.hpp"
 
 Game::Game()
-    :actors_(NULL)
+    :ta_(nullptr)
     ,shader_(nullptr)
     ,verts_(nullptr)
     ,window_(nullptr)
@@ -169,6 +168,9 @@ void Game::draw()
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     // Draw game
     shader_->setActive();
     verts_->setActive();
@@ -241,7 +243,7 @@ bool Game::loadShaders()
     }
 
     shader_->setActive();
-    glm::mat4 simple_view_proj = mat::createSimpleView(1280.f, 720.f);
+    mat4 simple_view_proj = mat4::createSimpleView(1280.f, 720.f);
     shader_->setMatUniform("view_transform", simple_view_proj);
     return true;
 }
@@ -266,8 +268,6 @@ void Game::createVerts()
 void Game::loadData()
 {
     ta_ = new TestActor(this);
-    ta_ = new TestActor(this);
-    ta_->setPosition(glm::vec2(100.0f, 100.0f));
 }
 
 class Texture* Game::getTexture(const std::string& file_name)

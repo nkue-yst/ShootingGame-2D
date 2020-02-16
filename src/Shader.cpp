@@ -2,6 +2,7 @@
 #include <fstream>
 #include <SDL.h>
 #include <sstream>
+#include "Math.hpp"
 
 Shader::Shader()
     :vertex_shader_(0)
@@ -50,14 +51,14 @@ void Shader::setActive()
     glUseProgram(shader_program_);
 }
 
-void Shader::setMatUniform(const char* name, const glm::mat4& mat)
+void Shader::setMatUniform(const char* name, const mat4& mat)
 {
     GLuint loc_id = glGetUniformLocation(shader_program_, name);
     glUniformMatrix4fv(
         loc_id,
         1,
         GL_TRUE,
-        &mat[0][0]
+        mat.getPointer()
     );
 }
 

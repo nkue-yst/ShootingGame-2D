@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\SOIL\include;$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;$(SolutionDir)lib\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\SOIL\include;$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -112,7 +112,7 @@ xcopy "$(SolutionDir)lib\GLEW\lib\x86\glew32.dll" "$(OutDir)" /i /s /y</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\SOIL\include;$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;$(SolutionDir)lib\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)lib\SOIL\include;$(SolutionDir)lib\GLEW\include;$(SolutionDir)lib\SDL2\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

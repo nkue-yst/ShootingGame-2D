@@ -3,67 +3,61 @@
 using std::cos;
 using std::sin;
 
-glm::mat4 mat::createScale(float x_scale, float y_scale, float z_scale)
+const vec2 vec2::ZERO(0.0f, 0.0f);
+
+float m4_identity[4][4] =
 {
-    return glm::mat4(
-        x_scale, 0.0f, 0.0f, 0.0f,
-        0.0f, y_scale, 0.0f, 0.0f,
-        0.0f, 0.0f, z_scale, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f
-    );
+    { 1.0f, 0.0f, 0.0f, 0.0f },
+    { 0.0f, 1.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 1.0f, 0.0f },
+    { 0.0f, 0.0f, 0.0f, 1.0f }
+};
+const mat4 mat4::Identity(m4_identity);
+
+mat4 mat4::createScale(float x_scale, float y_scale, float z_scale)
+{
+    float res[4][4] =
+    {
+        { x_scale,    0.0f,    0.0f, 0.0f },
+        {    0.0f, y_scale,    0.0f, 0.0f },
+        {    0.0f,    0.0f, z_scale, 0.0f },
+        {    0.0f,    0.0f,    0.0f, 1.0f }
+    };
+    return mat4(res);
 }
 
-glm::mat4 mat::createScale(float scale)
+mat4 mat4::rotationZ(float theta)
 {
-    return createScale(scale, scale, scale);
+    float mat[4][4] =
+    {
+        {  cos(theta), sin(theta), 0.0f, 0.0f },
+        { -sin(theta), cos(theta), 0.0f, 0.0f },
+        {        0.0f,       0.0f, 1.0f, 0.0f },
+        {        0.0f,       0.0f, 0.0f, 1.0f }
+    };
+    return mat4(mat);
 }
 
-glm::mat4 mat::createRotationX(float theta)
+mat4 mat4::translation(float x, float y, float z)
 {
-    return glm::mat4(
-        1.0f,        0.0f,       0.0f, 0.0f,
-        0.0f,  cos(theta), sin(theta), 0.0f,
-        0.0f, -sin(theta), cos(theta), 0.0f,
-        0.0f,        0.0f,       0.0f, 1.0f
-    );
+    float res[4][4] =
+    {
+        { 1.0f, 0.0f, 0.0f, 0.0f },
+        { 0.0f, 1.0f, 0.0f, 0.0f },
+        { 0.0f, 0.0f, 1.0f, 0.0f },
+        {    x,    y,    z, 1.0f }
+    };
+    return mat4(res);
 }
 
-glm::mat4 mat::createRotationY(float theta)
+mat4 mat4::createSimpleView(float width, float height)
 {
-    return glm::mat4(
-        cos(theta), 0.0f, -sin(theta), 0.0f,
-              0.0f, 1.0f,        0.0f, 0.0f,
-        sin(theta), 0.0f,  cos(theta), 0.0f,
-              0.0f, 0.0f,        0.0f, 1.0f
-    );
-}
-
-glm::mat4 mat::createRotationZ(float theta)
-{
-    return glm::mat4(
-         cos(theta), sin(theta), 0.0f, 0.0f,
-        -sin(theta), cos(theta), 0.0f, 0.0f,
-               0.0f,       0.0f, 1.0f, 0.0f,
-               0.0f,       0.0f, 0.0f, 1.0f
-    );
-}
-
-glm::mat4 mat::createTranslation(glm::vec3 trans)
-{
-    return glm::mat4(
-        1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
-        trans.x, trans.y, trans.z, 1.0f
-    );
-}
-
-glm::mat4 mat::createSimpleView(float width, float height)
-{
-    return glm::mat4(
-        2.0f / width,          0.0f, 0.0f, 0.0f,
-                0.0f, 2.0f / height, 0.0f, 0.0f,
-                0.0f,          0.0f, 1.0f, 0.0f,
-                0.0f,          0.0f, 1.0f, 1.0f
-    );
+    float res[4][4] =
+    {
+        { 2.0f/width,        0.0f, 0.0f, 0.0f },
+        {       0.0f, 2.0f/height, 0.0f, 0.0f },
+        {       0.0f,        0.0f, 1.0f, 0.0f },
+        {       0.0f,        0.0f, 1.0f, 1.0f }
+    };
+    return mat4(res);
 }
