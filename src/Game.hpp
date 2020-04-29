@@ -20,17 +20,16 @@ public:
     void addDrawComponent(class DrawComponent* d_component);
     void removeDrawComponent(class DrawComponent* d_component);
 
-    bool loadShaders();
-    void createVerts();
-    void loadData();
-    void unloadData();
-
     class Texture* getTexture(const std::string& file_name);
 
 private:
     void inputKeys();
     void updateGame();
     void draw();
+    bool loadShaders();
+    void createVerts();
+    void loadData();
+    void unloadData();
 
     std::unordered_map<std::string, class Texture*> textures_;
 

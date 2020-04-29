@@ -15,7 +15,7 @@ TestActor::TestActor(Game* game)
     ic->setClockWiseKey(SDL_SCANCODE_A);
     ic->setCounterClockWiseKey(SDL_SCANCODE_D);
     ic->setMaxForwardSpeed(300.0f);
-    ic->setMaxAngularSpeed(3.14f * 2.0f);
+    ic->setMaxAngularSpeed(3.1415f * 2.0f);
 }
 
 void TestActor::updateActor(float dt)

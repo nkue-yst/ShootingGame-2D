@@ -38,14 +38,14 @@ mat4 mat4::rotationZ(float theta)
     return mat4(res);
 }
 
-mat4 mat4::translation(float x, float y, float z)
+mat4 mat4::translation(const vec3& trans)
 {
     float res[4][4] =
     {
         { 1.0f, 0.0f, 0.0f, 0.0f },
         { 0.0f, 1.0f, 0.0f, 0.0f },
         { 0.0f, 0.0f, 1.0f, 0.0f },
-        {    x,    y,    z, 1.0f }
+        { trans.x_, trans.y_, trans.z_, 1.0f }
     };
     return mat4(res);
 }

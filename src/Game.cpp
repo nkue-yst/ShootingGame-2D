@@ -92,6 +92,7 @@ void Game::run()
 
 void Game::shutdown()
 {
+    unloadData();
     delete verts_;
     shader_->unLoad();
     delete shader_;
@@ -192,7 +193,6 @@ void Game::draw()
     }
 
     SDL_GL_SwapWindow(window_);
-
 }
 
 void Game::addActor(Actor* actor)

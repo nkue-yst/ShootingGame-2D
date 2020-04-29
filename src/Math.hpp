@@ -38,6 +38,26 @@ public:
 	}
 };
 
+class vec3
+{
+public:
+	float x_;
+	float y_;
+	float z_;
+
+	vec3()
+		:x_(0.0f)
+		,y_(0.0f)
+		,z_(0.0f)
+	{}
+
+	explicit vec3(float x, float y, float z)
+		:x_(x)
+		,y_(y)
+		,z_(z)
+	{}
+};
+
 class mat4
 {
 public:
@@ -144,7 +164,7 @@ public:
     static mat4 rotationZ(float theta);
 
 	// 平行移動行列
-	static mat4 translation(float x, float y, float z);
+	static mat4 translation(const vec3& trans);
 
 	// 2Dビュー射影変換
 	static mat4 createSimpleView(float width, float height);

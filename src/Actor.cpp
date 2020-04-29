@@ -45,6 +45,11 @@ void Actor::updateComponents(float dt)
     }
 }
 
+void Actor::updateActor(float dt)
+{
+
+}
+
 void Actor::inputKeys(const uint8_t* key_state)
 {
     if (state_ == State::EActive)
@@ -94,7 +99,7 @@ void Actor::computeWorldTransform()
 
         world_translation_ = mat4::createScale(scale_);
         world_translation_ *= mat4::rotationZ(rotation_);
-        world_translation_ *= mat4::translation(position_.x_, position_.y_, 0.0f);
+        world_translation_ *= mat4::translation(vec3(position_.x_, position_.y_, 0.0f));
 
         // 各コンポーネントにワールド変換を通知
         for (auto component : components_)
