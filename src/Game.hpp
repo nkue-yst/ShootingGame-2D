@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include "TestActor.hpp"
+#include "Math.hpp"
 
 class Game
 {
@@ -23,6 +23,7 @@ public:
     bool loadShaders();
     void createVerts();
     void loadData();
+    void unloadData();
 
     class Texture* getTexture(const std::string& file_name);
 
@@ -46,5 +47,5 @@ private:
     SDL_GLContext context_;
     Uint32 ticks_count_;
     bool is_running_;
-    bool is_updating_actor_;
+    bool is_actor_updating_;
 };

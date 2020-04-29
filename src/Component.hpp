@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 class Component
 {
@@ -7,6 +8,7 @@ public:
     virtual ~Component();
 
     virtual void update(float dt);
+    virtual void inputKeys(const uint8_t* key_state) {}
     virtual void onUpdateWorldTransform() {}
 
     int getUpdateOrder() const { return update_order_; }

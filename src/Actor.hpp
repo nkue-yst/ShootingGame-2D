@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <cstdint>
 #include <vector>
 #include "Math.hpp"
 
@@ -19,6 +20,9 @@ public:
     void update(float dt);  // システムから呼び出す更新関数
     void updateComponents(float dt);  // アクターの持つコンポーネントの更新
     virtual void updateActor(float dt) {}  // アクター自身の更新
+
+    void inputKeys(const uint8_t* key_state);  // Gameから呼び出し
+    virtual void actorInput(const uint8_t* key_state);  // オーバーライド可
 
     void addComponent(class Component* component);
     void removeComponent(class Component* component);
@@ -45,7 +49,6 @@ private:
     vec2 position_;
     float rotation_;
     float scale_;
-    
     
     std::vector<class Component*> components_;
     class Game* game_;

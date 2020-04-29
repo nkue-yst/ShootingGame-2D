@@ -45,6 +45,23 @@ void Actor::updateComponents(float dt)
     }
 }
 
+void Actor::inputKeys(const uint8_t* key_state)
+{
+    if (state_ == State::EActive)
+    {
+        for (auto compo : components_)
+        {
+            compo->inputKeys(key_state);
+        }
+        actorInput(key_state);
+    }
+}
+
+void Actor::actorInput(const uint8_t* key_state)
+{
+
+}
+
 void Actor::addComponent(class Component* component)
 {
     int own_order = component->getUpdateOrder();

@@ -44,6 +44,9 @@
     <ClInclude Include="src\Texture.hpp">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="src\InputComponent.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -77,6 +80,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputComponent.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

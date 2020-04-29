@@ -3,6 +3,7 @@
 #include "Actor.hpp"
 #include "DrawComponent.hpp"
 #include "Shader.hpp"
+#include "TestActor.hpp"
 #include "Texture.hpp"
 #include "VertexArray.hpp"
 
@@ -14,7 +15,7 @@ Game::Game()
     ,context_(NULL)
     ,ticks_count_(0)
     ,is_running_(true)
-    ,is_updating_actor_(false)
+    ,is_actor_updating_(false)
 {
 
 }
@@ -91,6 +92,9 @@ void Game::run()
 
 void Game::shutdown()
 {
+    delete verts_;
+    shader_->unLoad();
+    delete shader_;
     SDL_GL_DeleteContext(context_);
     SDL_DestroyWindow(window_);
     SDL_Quit();
@@ -109,11 +113,18 @@ void Game::inputKeys()
         }
     }
 
-    const Uint8* state = SDL_GetKeyboardState(NULL);
-    if (state[SDL_SCANCODE_ESCAPE])
+    const Uint8* key_state = SDL_GetKeyboardState(NULL);
+    if (key_state[SDL_SCANCODE_ESCAPE])
     {
         is_running_ = false;
     }
+
+    is_actor_updating_ = true;
+    for (auto actor : actors_)
+    {
+        actor->inputKeys(key_state);
+    }
+    is_actor_updating_ = false;
 }
 
 void Game::updateGame()
@@ -130,12 +141,12 @@ void Game::updateGame()
     ticks_count_ = SDL_GetTicks();
 
     // 全アクターの更新
-    is_updating_actor_ = true;
+    is_actor_updating_ = true;
     for (auto actor : actors_)
     {
         actor->update(dt);
     }
-    is_updating_actor_ = false;
+    is_actor_updating_ = false;
 
     // 待機アクターをactors_に移動
     for (auto actor : waiting_actors_)
@@ -186,7 +197,7 @@ void Game::draw()
 
 void Game::addActor(Actor* actor)
 {
-    if (is_updating_actor_)
+    if (is_actor_updating_)
     {
         waiting_actors_.emplace_back(actor);
     }
@@ -237,7 +248,7 @@ void Game::removeDrawComponent(class DrawComponent* d_component)
 bool Game::loadShaders()
 {
     shader_ = new Shader();
-    if (!shader_->load("src/shader/Basic.vert", "src/shader/Basic.frag"))
+    if (!shader_->load("src/shader/Sprite.vert", "src/shader/Sprite.frag"))
     {
         return false;
     }
@@ -268,6 +279,22 @@ void Game::createVerts()
 void Game::loadData()
 {
     ta_ = new TestActor(this);
+    ta_->setRotation(3.14f / 2.0f);
+}
+
+void Game::unloadData()
+{
+    while (!actors_.empty())
+    {
+        delete actors_.back();
+    }
+
+    for (auto i : textures_)
+    {
+        i.second->unLoadImage();
+        delete i.second;
+    }
+    textures_.clear();
 }
 
 class Texture* Game::getTexture(const std::string& file_name)
