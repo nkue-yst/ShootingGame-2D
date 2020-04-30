@@ -7,7 +7,7 @@ TestActor::TestActor(Game* game)
     :Actor(game)
 {
     DrawComponent* dc = new DrawComponent(this, 150);
-    dc->setTexture(game->getTexture("./image/Ship.png"));
+    dc->setTexture(game->getTexture("./image/player.png"));
 
     InputComponent* ic = new InputComponent(this);
     ic->setForwardKey(SDL_SCANCODE_W);
