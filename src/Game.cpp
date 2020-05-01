@@ -42,8 +42,8 @@ bool Game::initialize()
         "Game window",
         100,
         100,
-        1024,
-        768,
+        1800,
+        900,
         SDL_WINDOW_OPENGL
     );
 
@@ -254,7 +254,7 @@ bool Game::loadShaders()
     }
 
     shader_->setActive();
-    mat4 simple_view_proj = mat4::createSimpleView(1024.f, 768.f);
+    mat4 simple_view_proj = mat4::createSimpleView(1800.f, 900.f);
     shader_->setMatUniform("view_transform", simple_view_proj);
     return true;
 }
