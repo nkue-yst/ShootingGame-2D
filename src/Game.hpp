@@ -37,7 +37,7 @@ private:
     std::vector<class Actor*> waiting_actors_;
 
     std::vector<class DrawComponent*> d_components_;
-    class TestActor* ta_;
+    class PlayerActor* player_;
 
     class Shader* shader_;
     class VertexArray* verts_;

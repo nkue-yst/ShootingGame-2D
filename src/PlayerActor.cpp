@@ -1,9 +1,9 @@
-#include "TestActor.hpp"
+#include "PlayerActor.hpp"
 #include "DrawComponent.hpp"
 #include "Game.hpp"
 #include "InputComponent.hpp"
 
-TestActor::TestActor(Game* game)
+PlayerActor::PlayerActor(Game* game)
     :Actor(game)
 {
     DrawComponent* dc = new DrawComponent(this, 150);
@@ -18,12 +18,12 @@ TestActor::TestActor(Game* game)
     ic->setMaxAngularSpeed(3.1415f * 2.0f);
 }
 
-void TestActor::updateActor(float dt)
+void PlayerActor::updateActor(float dt)
 {
 
 }
 
-void TestActor::actorInput(const uint8_t* key_state)
+void PlayerActor::actorInput(const uint8_t* key_state)
 {
 
 }

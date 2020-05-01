@@ -3,12 +3,12 @@
 #include "Actor.hpp"
 #include "DrawComponent.hpp"
 #include "Shader.hpp"
-#include "TestActor.hpp"
+#include "PlayerActor.hpp"
 #include "Texture.hpp"
 #include "VertexArray.hpp"
 
 Game::Game()
-    :ta_(nullptr)
+    :player_(nullptr)
     ,shader_(nullptr)
     ,verts_(nullptr)
     ,window_(nullptr)
@@ -278,8 +278,8 @@ void Game::createVerts()
 
 void Game::loadData()
 {
-    ta_ = new TestActor(this);
-    ta_->setRotation(3.14f / 2.0f);
+    player_ = new PlayerActor(this);
+    player_->setRotation(3.14f / 2.0f);
 }
 
 void Game::unloadData()
