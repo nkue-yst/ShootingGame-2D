@@ -38,6 +38,7 @@ public:
 
     vec2 getForward() const { return vec2(std::cos(rotation_), std::sin(rotation_)); }
 
+    void setState(State state) { state_ = state; }
     void setPosition(const vec2& pos) { position_ = pos; need_recompute_world_transform_ = true; }
     void setRotation(const float rot) { rotation_ = rot; need_recompute_world_transform_ = true; }
     void setScale(const float scl) { scale_ = scl; need_recompute_world_transform_ = true; }

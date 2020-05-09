@@ -1,4 +1,5 @@
 #include "PlayerActor.hpp"
+#include "Bullet.hpp"
 #include "DrawComponent.hpp"
 #include "Game.hpp"
 #include "InputComponent.hpp"
@@ -25,5 +26,10 @@ void PlayerActor::updateActor(float dt)
 
 void PlayerActor::actorInput(const uint8_t* key_state)
 {
-
+    if (key_state[SDL_SCANCODE_SPACE])
+    {
+        Bullet* bullet = new Bullet(getGame());
+        bullet->setPosition(getPosition());
+        bullet->setRotation(getRotation());
+    }
 }
