@@ -12,6 +12,5 @@ public:
     void setRadius(float radius) { radius_ = radius; }
 
 private:
-    float life_time_;
     float radius_;
 };

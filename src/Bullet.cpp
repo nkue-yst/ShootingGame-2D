@@ -5,7 +5,6 @@
 
 Bullet::Bullet(Game* game)
     :Actor(game)
-    ,life_time_(1.0f)
     ,radius_(10.0f)
 {
     DrawComponent* d_compo = new DrawComponent(this);
@@ -17,10 +16,5 @@ Bullet::Bullet(Game* game)
 
 void Bullet::updateActor(float dt)
 {
-    life_time_ -= dt;
-    
-    if (life_time_ <= 0.0f)
-    {
-        setState(Actor::State::EDead);
-    }
+
 }
