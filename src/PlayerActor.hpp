@@ -9,4 +9,7 @@ public:
 
     void updateActor(float dt) override;
     void actorInput(const uint8_t* key_state) override;
+
+private:
+    float shoot_cooldown_;
 };

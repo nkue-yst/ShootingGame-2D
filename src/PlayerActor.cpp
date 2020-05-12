@@ -6,6 +6,7 @@
 
 PlayerActor::PlayerActor(Game* game)
     :Actor(game)
+    ,shoot_cooldown_(0.0f)
 {
     DrawComponent* dc = new DrawComponent(this, 150);
     dc->setTexture(game->getTexture("./image/player.png"));
@@ -21,15 +22,17 @@ PlayerActor::PlayerActor(Game* game)
 
 void PlayerActor::updateActor(float dt)
 {
-
+    shoot_cooldown_ -= dt;
 }
 
 void PlayerActor::actorInput(const uint8_t* key_state)
 {
-    if (key_state[SDL_SCANCODE_SPACE])
+    if (key_state[SDL_SCANCODE_SPACE] && shoot_cooldown_ <= 0.0f)
     {
         Bullet* bullet = new Bullet(getGame());
         bullet->setPosition(getPosition());
         bullet->setRotation(getRotation());
+
+        shoot_cooldown_ = 0.5f;
     }
 }
