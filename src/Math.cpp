@@ -14,6 +14,7 @@ static float m4_identity[4][4] =
 };
 const Mat4 Mat4::Identity(m4_identity);
 
+/* w’è‚³‚ê‚½’l‚Ìs—ñ‚ğì¬ */
 Mat4 Mat4::createScale(float x_scale, float y_scale, float z_scale)
 {
     float res[4][4] =

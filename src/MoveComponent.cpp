@@ -10,6 +10,7 @@ MoveComponent::MoveComponent(class Actor* owner, int update_order)
 
 }
 
+/* 親アクターの座標更新 */
 void MoveComponent::update(float dt)
 {
     float rot = owner_->getRotation();

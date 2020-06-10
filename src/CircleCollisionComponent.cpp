@@ -13,6 +13,7 @@ const Vec2& CircleCollisionComponent::getCenter() const
 	return owner_->getPosition();
 }
 
+/* CircleCollision“¯Žm‚Ì“–‚½‚è”»’è */
 bool isColliding(const CircleCollisionComponent& a, const CircleCollisionComponent& b)
 {
 	Vec2 middle = a.getCenter() - b.getCenter();

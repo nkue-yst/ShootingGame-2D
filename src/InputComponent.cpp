@@ -11,6 +11,7 @@ InputComponent::InputComponent(class Actor* owner)
 
 }
 
+/* ˆÚ“®E‰ñ“]‚Ì“ü—Í */
 void InputComponent::inputKeys(const uint8_t* key_state)
 {
     float forward_speed = 0.0f;

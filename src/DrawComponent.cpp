@@ -20,6 +20,7 @@ DrawComponent::~DrawComponent()
     owner_->getGame()->removeDrawComponent(this);
 }
 
+/* •`‰æŠÖ” */
 void DrawComponent::draw(Shader* shader)
 {
     if (texture_)

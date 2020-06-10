@@ -5,11 +5,11 @@ VertexArray::VertexArray(const float* verts, unsigned int num_verts, const unsig
     :num_verts_(num_verts)
     ,num_indices_(num_indices)
 {
-    // 頂点配列オブジェクトの作成
+    /* 頂点配列オブジェクトの作成 */
     glGenVertexArrays(1, &vertex_array_);
     glBindVertexArray(vertex_array_);
 
-    // 頂点バッファの作成
+    /* 頂点バッファの作成 */
     glGenBuffers(1, &vertex_buffer_);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_);
     glBufferData(
@@ -19,7 +19,7 @@ VertexArray::VertexArray(const float* verts, unsigned int num_verts, const unsig
         GL_STATIC_DRAW
     );
 
-    // インデックスバッファの作成
+    /* インデックスバッファの作成 */
     glGenBuffers(1, &index_buffer_);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index_buffer_);
     glBufferData(
@@ -29,7 +29,7 @@ VertexArray::VertexArray(const float* verts, unsigned int num_verts, const unsig
         GL_STATIC_DRAW
     );
     
-    // 頂点属性の設定
+    /* 頂点属性の設定 */
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(
         0,

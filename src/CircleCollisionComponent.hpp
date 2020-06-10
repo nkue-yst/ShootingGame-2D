@@ -16,4 +16,4 @@ private:
 	float radius_;
 };
 
-bool collide(const CircleCollisionComponent& a, const CircleCollisionComponent& b);
+bool isColliding(const CircleCollisionComponent& a, const CircleCollisionComponent& b);

@@ -25,7 +25,7 @@ bool Shader::load(const std::string& vert_name, const std::string& frag_name)
         return false;
     }
 
-    // シェーダをリンクしてシェーダプログラムを作成
+    /* シェーダをリンクしてシェーダプログラムを作成 */
     shader_program_ = glCreateProgram();
     glAttachShader(shader_program_, vertex_shader_);
     glAttachShader(shader_program_, frag_shader_);

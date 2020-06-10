@@ -24,6 +24,7 @@ Actor::~Actor()
     }
 }
 
+/* アクター情報の更新 */
 void Actor::update(float dt)
 {
     if (state_ == Actor::State::EActive)
@@ -37,6 +38,7 @@ void Actor::update(float dt)
     }
 }
 
+/* 子コンポーネントの更新 */
 void Actor::updateComponents(float dt)
 {
     for (auto component : components_)
@@ -67,6 +69,7 @@ void Actor::actorInput(const uint8_t* key_state)
 
 }
 
+/* 子コンポーネントを追加 */
 void Actor::addComponent(class Component* component)
 {
     int own_order = component->getUpdateOrder();
@@ -91,6 +94,7 @@ void Actor::removeComponent(Component* component)
     }
 }
 
+/* 変換された座標を計算 */
 void Actor::computeWorldTransform()
 {
     if (need_recompute_world_transform_)

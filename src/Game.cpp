@@ -22,6 +22,7 @@ Game::Game()
 
 bool Game::initialize()
 {
+    /* SDL・OpenGLの初期化 */
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
     {
         SDL_Log("Failed to initialize SDL2 : %s", SDL_GetError());
@@ -38,13 +39,14 @@ bool Game::initialize()
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
+    /* ウィンドウ作成 */
     window_ = SDL_CreateWindow(
         "Game window",
         100,
         100,
-        1800,
-        900,
-        SDL_WINDOW_OPENGL
+        1920,
+        1080,
+        SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN
     );
 
     if (!window_)
@@ -55,7 +57,7 @@ bool Game::initialize()
 
     context_ = SDL_GL_CreateContext(window_);
 
-    // GLEWの初期化
+    /* GLEWの初期化 */
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK)
     {
@@ -64,14 +66,14 @@ bool Game::initialize()
     }
     glGetError();    
 
-    // シェーダ読み込み
+    /* シェーダ読み込み */
     if (!loadShaders())
     {
         SDL_Log("Failed to load shaders.");
         return false;
     }
 
-    // 描画物の作成
+    /* 描画物の作成 */
     createVerts();
     loadData();
 
@@ -80,6 +82,7 @@ bool Game::initialize()
     return true;
 }
 
+/* メインループ */
 void Game::run()
 {
     while (is_running_)
@@ -90,6 +93,7 @@ void Game::run()
     }
 }
 
+/* 終了処理 */
 void Game::shutdown()
 {
     unloadData();
@@ -101,6 +105,7 @@ void Game::shutdown()
     SDL_Quit();
 }
 
+/* キー入力関数 */
 void Game::inputKeys()
 {
     SDL_Event ev;
@@ -114,6 +119,7 @@ void Game::inputKeys()
         }
     }
 
+    /* ESCでゲーム終了 */
     const Uint8* key_state = SDL_GetKeyboardState(NULL);
     if (key_state[SDL_SCANCODE_ESCAPE])
     {
@@ -130,7 +136,7 @@ void Game::inputKeys()
 
 void Game::updateGame()
 {
-    // フレーム制限(60FPS)
+    /* フレーム制限(60FPS) */
     while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticks_count_ + 16))
         ;
 
@@ -141,7 +147,7 @@ void Game::updateGame()
     }
     ticks_count_ = SDL_GetTicks();
 
-    // 全アクターの更新
+    /* 全アクターの更新 */
     is_actor_updating_ = true;
     for (auto actor : actors_)
     {
@@ -149,7 +155,7 @@ void Game::updateGame()
     }
     is_actor_updating_ = false;
 
-    // 待機アクターをactors_に移動
+    /* 待機アクターをactors_に移動 */
     for (auto actor : waiting_actors_)
     {
         actor->computeWorldTransform();
@@ -157,7 +163,7 @@ void Game::updateGame()
     }
     waiting_actors_.clear();
 
-    // 死んだアクターを一時保存
+    /* 死んだアクターを一時保存 */
     std::vector<Actor*> dead_actors;
 
     for (auto actor : actors_)
@@ -168,7 +174,7 @@ void Game::updateGame()
         }
     }
 
-    // 死んだアクターを削除
+    /* 死んだアクターを削除 */
     for (auto actor : dead_actors)
     {
         delete actor;
@@ -177,6 +183,7 @@ void Game::updateGame()
 
 void Game::draw()
 {
+    /* 背景を灰色に */
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -245,6 +252,7 @@ void Game::removeDrawComponent(class DrawComponent* d_component)
     d_components_.erase(iter);
 }
 
+/* シェーダの初期設定 */
 bool Game::loadShaders()
 {
     shader_ = new Shader();
@@ -254,7 +262,7 @@ bool Game::loadShaders()
     }
 
     shader_->setActive();
-    Mat4 simple_view_proj = Mat4::createSimpleView(1800.f, 900.f);
+    Mat4 simple_view_proj = Mat4::createSimpleView(1920.f, 1080.f);
     shader_->setMatUniform("view_transform", simple_view_proj);
     return true;
 }
@@ -297,6 +305,7 @@ void Game::unloadData()
     textures_.clear();
 }
 
+/* 指定ファイル名よりテクスチャ取得 */
 class Texture* Game::getTexture(const std::string& file_name)
 {
     Texture* tex = nullptr;

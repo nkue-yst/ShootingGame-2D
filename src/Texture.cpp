@@ -16,6 +16,7 @@ Texture::~Texture()
 
 }
 
+/* SOILを用いてテクスチャのロード */
 bool Texture::loadImage(const std::string& name)
 {
     int channels_num = 0;
