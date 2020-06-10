@@ -51,7 +51,7 @@ void Shader::setActive()
     glUseProgram(shader_program_);
 }
 
-void Shader::setMatUniform(const char* name, const mat4& mat)
+void Shader::setMatUniform(const char* name, const Mat4& mat)
 {
     GLuint loc_id = glGetUniformLocation(shader_program_, name);
     glUniformMatrix4fv(

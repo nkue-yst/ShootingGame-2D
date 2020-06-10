@@ -50,6 +50,9 @@
     <ClInclude Include="src\Bullet.hpp">
       <Filter>header</Filter>
     </ClInclude>
+    <ClInclude Include="src\CircleCollisionComponent.hpp">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -89,6 +92,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="src\Bullet.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CircleCollisionComponent.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

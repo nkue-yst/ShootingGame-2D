@@ -2,170 +2,180 @@
 #include <cmath>
 #include <memory>
 
-class vec2
+class Vec2
 {
 public:
-    float x_;
-    float y_;
+    float x;
+    float y;
 
-    static const vec2 ZERO;
+    static const Vec2 ZERO;
 
-    vec2()
-        :x_(0.0f)
-        ,y_(0.0f)
+    Vec2()
+        :x(0.0f)
+        ,y(0.0f)
     {}
 
-    explicit vec2(float x, float y)
-        :x_(x)
-        ,y_(y)
+    explicit Vec2(float x, float y)
+        :x(x)
+        ,y(y)
     {}
 
-	friend vec2 operator+(const vec2& a, const vec2& b)
+	friend Vec2 operator+(const Vec2& a, const Vec2& b)
 	{
-		return vec2(a.x_ + b.x_, a.y_ + b.y_);
+		return Vec2(a.x + b.x, a.y + b.y);
 	}
 
-	friend vec2 operator*(const vec2& vec, float scalar)
+	friend Vec2 operator-(const Vec2& a, const Vec2& b)
 	{
-		return vec2(vec.x_ * scalar, vec.y_ * scalar);
+		return Vec2(a.x - b.x, a.y - b.y);
 	}
 
-	vec2& operator+=(const vec2& right)
+	friend Vec2 operator*(const Vec2& vec, float scalar)
 	{
-		x_ += right.x_;
-		y_ += right.y_;
+		return Vec2(vec.x * scalar, vec.y * scalar);
+	}
+
+	Vec2& operator+=(const Vec2& right)
+	{
+		x += right.x;
+		y += right.y;
 		return *this;
 	}
+
+	float squared() const
+	{
+		return (x * x + y + y);
+	}
 };
 
-class vec3
+class Vec3
 {
 public:
-	float x_;
-	float y_;
-	float z_;
+	float x;
+	float y;
+	float z;
 
-	vec3()
-		:x_(0.0f)
-		,y_(0.0f)
-		,z_(0.0f)
+	Vec3()
+		:x(0.0f)
+		,y(0.0f)
+		,z(0.0f)
 	{}
 
-	explicit vec3(float x, float y, float z)
-		:x_(x)
-		,y_(y)
-		,z_(z)
+	explicit Vec3(float x, float y, float z)
+		:x(x)
+		,y(y)
+		,z(z)
 	{}
 };
 
-class mat4
+class Mat4
 {
 public:
-	float mat_[4][4];
+	float mat[4][4];
 
-	static const mat4 Identity;
+	static const Mat4 Identity;
 
 	// 単位行列で初期化
-	mat4() { *this = mat4::Identity; }
+	Mat4() { *this = Mat4::Identity; }
 
-	explicit mat4(float mat[4][4])
+	explicit Mat4(float in_mat[4][4])
 	{
-		memcpy(mat_, mat, 16 * sizeof(float));
+		memcpy(mat, in_mat, 16 * sizeof(float));
 	}
 
-	friend mat4 operator*(const mat4& a, const mat4& b)
+	friend Mat4 operator*(const Mat4& a, const Mat4& b)
 	{
-		mat4 res;
+		Mat4 res;
 		// Row 0
-		res.mat_[0][0] =
-			a.mat_[0][0] * b.mat_[0][0] + a.mat_[0][1] * b.mat_[1][0] +
-			a.mat_[0][2] * b.mat_[2][0] + a.mat_[0][3] * b.mat_[3][0];
+		res.mat[0][0] =
+			a.mat[0][0] * b.mat[0][0] + a.mat[0][1] * b.mat[1][0] +
+			a.mat[0][2] * b.mat[2][0] + a.mat[0][3] * b.mat[3][0];
 
-		res.mat_[0][1] =
-			a.mat_[0][0] * b.mat_[0][1] + a.mat_[0][1] * b.mat_[1][1] +
-			a.mat_[0][2] * b.mat_[2][1] + a.mat_[0][3] * b.mat_[3][1];
+		res.mat[0][1] =
+			a.mat[0][0] * b.mat[0][1] + a.mat[0][1] * b.mat[1][1] +
+			a.mat[0][2] * b.mat[2][1] + a.mat[0][3] * b.mat[3][1];
 
-		res.mat_[0][2] =
-			a.mat_[0][0] * b.mat_[0][2] + a.mat_[0][1] * b.mat_[1][2] +
-			a.mat_[0][2] * b.mat_[2][2] + a.mat_[0][3] * b.mat_[3][2];
+		res.mat[0][2] =
+			a.mat[0][0] * b.mat[0][2] + a.mat[0][1] * b.mat[1][2] +
+			a.mat[0][2] * b.mat[2][2] + a.mat[0][3] * b.mat[3][2];
 
-		res.mat_[0][3] =
-			a.mat_[0][0] * b.mat_[0][3] + a.mat_[0][1] * b.mat_[1][3] +
-			a.mat_[0][2] * b.mat_[2][3] + a.mat_[0][3] * b.mat_[3][3];
+		res.mat[0][3] =
+			a.mat[0][0] * b.mat[0][3] + a.mat[0][1] * b.mat[1][3] +
+			a.mat[0][2] * b.mat[2][3] + a.mat[0][3] * b.mat[3][3];
 
 		// Row 1
-		res.mat_[1][0] =
-			a.mat_[1][0] * b.mat_[0][0] + a.mat_[1][1] * b.mat_[1][0] +
-			a.mat_[1][2] * b.mat_[2][0] + a.mat_[1][3] * b.mat_[3][0];
+		res.mat[1][0] =
+			a.mat[1][0] * b.mat[0][0] + a.mat[1][1] * b.mat[1][0] +
+			a.mat[1][2] * b.mat[2][0] + a.mat[1][3] * b.mat[3][0];
 
-		res.mat_[1][1] =
-			a.mat_[1][0] * b.mat_[0][1] + a.mat_[1][1] * b.mat_[1][1] +
-			a.mat_[1][2] * b.mat_[2][1] + a.mat_[1][3] * b.mat_[3][1];
+		res.mat[1][1] =
+			a.mat[1][0] * b.mat[0][1] + a.mat[1][1] * b.mat[1][1] +
+			a.mat[1][2] * b.mat[2][1] + a.mat[1][3] * b.mat[3][1];
 
-		res.mat_[1][2] =
-			a.mat_[1][0] * b.mat_[0][2] + a.mat_[1][1] * b.mat_[1][2] +
-			a.mat_[1][2] * b.mat_[2][2] + a.mat_[1][3] * b.mat_[3][2];
+		res.mat[1][2] =
+			a.mat[1][0] * b.mat[0][2] + a.mat[1][1] * b.mat[1][2] +
+			a.mat[1][2] * b.mat[2][2] + a.mat[1][3] * b.mat[3][2];
 
-		res.mat_[1][3] =
-			a.mat_[1][0] * b.mat_[0][3] + a.mat_[1][1] * b.mat_[1][3] +
-			a.mat_[1][2] * b.mat_[2][3] + a.mat_[1][3] * b.mat_[3][3];
+		res.mat[1][3] =
+			a.mat[1][0] * b.mat[0][3] + a.mat[1][1] * b.mat[1][3] +
+			a.mat[1][2] * b.mat[2][3] + a.mat[1][3] * b.mat[3][3];
 
 		// Row 2
-		res.mat_[2][0] =
-			a.mat_[2][0] * b.mat_[0][0] + a.mat_[2][1] * b.mat_[1][0] +
-			a.mat_[2][2] * b.mat_[2][0] + a.mat_[2][3] * b.mat_[3][0];
+		res.mat[2][0] =
+			a.mat[2][0] * b.mat[0][0] + a.mat[2][1] * b.mat[1][0] +
+			a.mat[2][2] * b.mat[2][0] + a.mat[2][3] * b.mat[3][0];
 
-		res.mat_[2][1] =
-			a.mat_[2][0] * b.mat_[0][1] + a.mat_[2][1] * b.mat_[1][1] +
-			a.mat_[2][2] * b.mat_[2][1] + a.mat_[2][3] * b.mat_[3][1];
+		res.mat[2][1] =
+			a.mat[2][0] * b.mat[0][1] + a.mat[2][1] * b.mat[1][1] +
+			a.mat[2][2] * b.mat[2][1] + a.mat[2][3] * b.mat[3][1];
 
-		res.mat_[2][2] =
-			a.mat_[2][0] * b.mat_[0][2] + a.mat_[2][1] * b.mat_[1][2] +
-			a.mat_[2][2] * b.mat_[2][2] + a.mat_[2][3] * b.mat_[3][2];
+		res.mat[2][2] =
+			a.mat[2][0] * b.mat[0][2] + a.mat[2][1] * b.mat[1][2] +
+			a.mat[2][2] * b.mat[2][2] + a.mat[2][3] * b.mat[3][2];
 
-		res.mat_[2][3] =
-			a.mat_[2][0] * b.mat_[0][3] + a.mat_[2][1] * b.mat_[1][3] +
-			a.mat_[2][2] * b.mat_[2][3] + a.mat_[2][3] * b.mat_[3][3];
+		res.mat[2][3] =
+			a.mat[2][0] * b.mat[0][3] + a.mat[2][1] * b.mat[1][3] +
+			a.mat[2][2] * b.mat[2][3] + a.mat[2][3] * b.mat[3][3];
 
 		// Row 3
-		res.mat_[3][0] =
-			a.mat_[3][0] * b.mat_[0][0] + a.mat_[3][1] * b.mat_[1][0] +
-			a.mat_[3][2] * b.mat_[2][0] + a.mat_[3][3] * b.mat_[3][0];
+		res.mat[3][0] =
+			a.mat[3][0] * b.mat[0][0] + a.mat[3][1] * b.mat[1][0] +
+			a.mat[3][2] * b.mat[2][0] + a.mat[3][3] * b.mat[3][0];
 
-		res.mat_[3][1] =
-			a.mat_[3][0] * b.mat_[0][1] + a.mat_[3][1] * b.mat_[1][1] +
-			a.mat_[3][2] * b.mat_[2][1] + a.mat_[3][3] * b.mat_[3][1];
+		res.mat[3][1] =
+			a.mat[3][0] * b.mat[0][1] + a.mat[3][1] * b.mat[1][1] +
+			a.mat[3][2] * b.mat[2][1] + a.mat[3][3] * b.mat[3][1];
 
-		res.mat_[3][2] =
-			a.mat_[3][0] * b.mat_[0][2] + a.mat_[3][1] * b.mat_[1][2] +
-			a.mat_[3][2] * b.mat_[2][2] + a.mat_[3][3] * b.mat_[3][2];
+		res.mat[3][2] =
+			a.mat[3][0] * b.mat[0][2] + a.mat[3][1] * b.mat[1][2] +
+			a.mat[3][2] * b.mat[2][2] + a.mat[3][3] * b.mat[3][2];
 
-		res.mat_[3][3] =
-			a.mat_[3][0] * b.mat_[0][3] + a.mat_[3][1] * b.mat_[1][3] +
-			a.mat_[3][2] * b.mat_[2][3] + a.mat_[3][3] * b.mat_[3][3];
+		res.mat[3][3] =
+			a.mat[3][0] * b.mat[0][3] + a.mat[3][1] * b.mat[1][3] +
+			a.mat[3][2] * b.mat[2][3] + a.mat[3][3] * b.mat[3][3];
 
 		return res;
 	}
 
-	mat4& operator*=(const mat4& right)
+	Mat4& operator*=(const Mat4& right)
 	{
 		*this = *this * right;
 		return *this;
 	}
 
 	// 行列のポインターを取得
-	const float* getPointer() const { return reinterpret_cast<const float*>(&mat_[0][0]); }
+	const float* getPointer() const { return reinterpret_cast<const float*>(&mat[0][0]); }
 
     // スケール行列作成
-    static mat4 createScale(float x_scale, float y_scale, float z_scale);
-    static mat4 createScale(float scale) { return createScale(scale, scale, scale); }
+    static Mat4 createScale(float x_scale, float y_scale, float z_scale);
+    static Mat4 createScale(float scale) { return createScale(scale, scale, scale); }
 
     // 回転行列作成
-    static mat4 rotationZ(float theta);
+    static Mat4 rotationZ(float theta);
 
 	// 平行移動行列
-	static mat4 translation(const vec3& trans);
+	static Mat4 translation(const Vec3& trans);
 
 	// 2Dビュー射影変換
-	static mat4 createSimpleView(float width, float height);
+	static Mat4 createSimpleView(float width, float height);
 };

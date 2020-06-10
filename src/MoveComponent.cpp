@@ -16,24 +16,24 @@ void MoveComponent::update(float dt)
     rot += angular_speed_ * dt;
     owner_->setRotation(rot);
 
-    vec2 pos = owner_->getPosition();
+    Vec2 pos = owner_->getPosition();
     pos += owner_->getForward() * forward_speed_ * dt;
-    if (pos.x_ < -900.0f)
+    if (pos.x < -900.0f)
     {
-        pos.x_ = 900.0f;
+        pos.x = 900.0f;
     }
-    else if (pos.x_ > 900.0f)
+    else if (pos.x > 900.0f)
     {
-        pos.x_ = -900.0f;
+        pos.x = -900.0f;
     }
 
-    if (pos.y_ < -450.0f)
+    if (pos.y < -450.0f)
     {
-        pos.y_ = 450.0f;
+        pos.y = 450.0f;
     }
-    else if (pos.y_ > 450.0f)
+    else if (pos.y > 450.0f)
     {
-        pos.y_ = -450.0f;
+        pos.y = -450.0f;
     }
     owner_->setPosition(pos);
 }

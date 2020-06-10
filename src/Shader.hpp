@@ -11,7 +11,7 @@ public:
     bool load(const std::string& vert_name, const std::string& frag_name);
     void unLoad();
     void setActive();
-    void setMatUniform(const char* name, const class mat4& mat);
+    void setMatUniform(const char* name, const class Mat4& mat);
 
 private:
     bool compileShader(const std::string& file_name, GLenum shader_type, GLuint& out_shader);

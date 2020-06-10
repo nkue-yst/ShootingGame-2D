@@ -3,7 +3,7 @@
 using std::cos;
 using std::sin;
 
-const vec2 vec2::ZERO(0.0f, 0.0f);
+const Vec2 Vec2::ZERO(0.0f, 0.0f);
 
 static float m4_identity[4][4] =
 {
@@ -12,9 +12,9 @@ static float m4_identity[4][4] =
     { 0.0f, 0.0f, 1.0f, 0.0f },
     { 0.0f, 0.0f, 0.0f, 1.0f }
 };
-const mat4 mat4::Identity(m4_identity);
+const Mat4 Mat4::Identity(m4_identity);
 
-mat4 mat4::createScale(float x_scale, float y_scale, float z_scale)
+Mat4 Mat4::createScale(float x_scale, float y_scale, float z_scale)
 {
     float res[4][4] =
     {
@@ -23,10 +23,10 @@ mat4 mat4::createScale(float x_scale, float y_scale, float z_scale)
         {    0.0f,    0.0f, z_scale, 0.0f },
         {    0.0f,    0.0f,    0.0f, 1.0f }
     };
-    return mat4(res);
+    return Mat4(res);
 }
 
-mat4 mat4::rotationZ(float theta)
+Mat4 Mat4::rotationZ(float theta)
 {
     float res[4][4] =
     {
@@ -35,22 +35,22 @@ mat4 mat4::rotationZ(float theta)
         {        0.0f,       0.0f, 1.0f, 0.0f },
         {        0.0f,       0.0f, 0.0f, 1.0f }
     };
-    return mat4(res);
+    return Mat4(res);
 }
 
-mat4 mat4::translation(const vec3& trans)
+Mat4 Mat4::translation(const Vec3& trans)
 {
     float res[4][4] =
     {
         { 1.0f, 0.0f, 0.0f, 0.0f },
         { 0.0f, 1.0f, 0.0f, 0.0f },
         { 0.0f, 0.0f, 1.0f, 0.0f },
-        { trans.x_, trans.y_, trans.z_, 1.0f }
+        { trans.x, trans.y, trans.z, 1.0f }
     };
-    return mat4(res);
+    return Mat4(res);
 }
 
-mat4 mat4::createSimpleView(float width, float height)
+Mat4 Mat4::createSimpleView(float width, float height)
 {
     float res[4][4] =
     {
@@ -59,5 +59,5 @@ mat4 mat4::createSimpleView(float width, float height)
         {       0.0f,        0.0f, 1.0f, 0.0f },
         {       0.0f,        0.0f, 1.0f, 1.0f }
     };
-    return mat4(res);
+    return Mat4(res);
 }

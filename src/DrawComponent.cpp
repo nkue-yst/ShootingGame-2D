@@ -24,12 +24,12 @@ void DrawComponent::draw(Shader* shader)
 {
     if (texture_)
     {
-        mat4 scale_mat = mat4::createScale(
+        Mat4 scale_mat = Mat4::createScale(
             static_cast<float>(texture_width_),
             static_cast<float>(texture_height_),
             1.0f
         );
-        mat4 world = scale_mat * owner_->getWorldTransform();
+        Mat4 world = scale_mat * owner_->getWorldTransform();
 
         shader->setMatUniform("world_transform", world);
         texture_->setActive();

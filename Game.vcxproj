@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="src\Actor.hpp" />
     <ClInclude Include="src\Bullet.hpp" />
+    <ClInclude Include="src\CircleCollisionComponent.hpp" />
     <ClInclude Include="src\Component.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\InputComponent.hpp" />
@@ -27,6 +28,7 @@
   <ItemGroup>
     <ClCompile Include="src\Actor.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputComponent.cpp" />

@@ -254,7 +254,7 @@ bool Game::loadShaders()
     }
 
     shader_->setActive();
-    mat4 simple_view_proj = mat4::createSimpleView(1800.f, 900.f);
+    Mat4 simple_view_proj = Mat4::createSimpleView(1800.f, 900.f);
     shader_->setMatUniform("view_transform", simple_view_proj);
     return true;
 }

@@ -30,25 +30,25 @@ public:
     void computeWorldTransform();
 
     const State getState() const { return state_; }
-    const mat4& getWorldTransform() const { return world_translation_; }
-    const vec2& getPosition() const { return position_; }
+    const Mat4& getWorldTransform() const { return world_translation_; }
+    const Vec2& getPosition() const { return position_; }
     const float getRotation() const { return rotation_; }
     const float getScale() const { return scale_; }
     class Game* getGame() { return game_; }
 
-    vec2 getForward() const { return vec2(std::cos(rotation_), std::sin(rotation_)); }
+    Vec2 getForward() const { return Vec2(std::cos(rotation_), std::sin(rotation_)); }
 
     void setState(State state) { state_ = state; }
-    void setPosition(const vec2& pos) { position_ = pos; need_recompute_world_transform_ = true; }
+    void setPosition(const Vec2& pos) { position_ = pos; need_recompute_world_transform_ = true; }
     void setRotation(const float rot) { rotation_ = rot; need_recompute_world_transform_ = true; }
     void setScale(const float scl) { scale_ = scl; need_recompute_world_transform_ = true; }
 
 private:
     State state_;
 
-    mat4 world_translation_;
+    Mat4 world_translation_;
     bool need_recompute_world_transform_;
-    vec2 position_;
+    Vec2 position_;
     float rotation_;
     float scale_;
     
