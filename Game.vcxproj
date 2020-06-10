@@ -40,8 +40,6 @@
     <ClCompile Include="src\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shader\Basic.frag" />
-    <None Include="src\shader\Basic.vert" />
     <None Include="src\shader\Sprite.frag" />
     <None Include="src\shader\Sprite.vert" />
     <None Include="src\shader\Transform.vert" />

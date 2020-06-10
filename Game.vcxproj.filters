@@ -93,12 +93,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shader\Basic.frag">
-      <Filter>shader</Filter>
-    </None>
-    <None Include="src\shader\Basic.vert">
-      <Filter>shader</Filter>
-    </None>
     <None Include="src\shader\Transform.vert">
       <Filter>shader</Filter>
     </None>
