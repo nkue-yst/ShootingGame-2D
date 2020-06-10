@@ -288,6 +288,7 @@ void Game::loadData()
 {
     player_ = new PlayerActor(this);
     player_->setRotation(3.14f / 2.0f);
+    player_->setIsPlayer(true);
 }
 
 void Game::unloadData()

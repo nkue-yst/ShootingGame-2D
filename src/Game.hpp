@@ -21,6 +21,7 @@ public:
     void removeDrawComponent(class DrawComponent* d_component);
 
     class Texture* getTexture(const std::string& file_name);
+    class PlayerActor* getPlayer() { return player_; }
 
 private:
     void inputKeys();

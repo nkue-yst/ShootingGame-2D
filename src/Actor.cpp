@@ -10,6 +10,7 @@ Actor::Actor(Game* game)
     ,rotation_(0.0f)
     ,scale_(1.0f)
     ,game_(game)
+    ,is_player_(false)
 {
     game_->addActor(this);
 }

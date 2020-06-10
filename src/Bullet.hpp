@@ -13,4 +13,5 @@ public:
 
 private:
     float radius_;
+    class CircleCollisionComponent* collision_;
 };

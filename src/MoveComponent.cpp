@@ -19,22 +19,35 @@ void MoveComponent::update(float dt)
 
     Vec2 pos = owner_->getPosition();
     pos += owner_->getForward() * forward_speed_ * dt;
-    if (pos.x < -900.0f)
+
+    /* ‰æ–Ê’[‚Åƒ[ƒv */
+    if (owner_->getIsPlayer())
     {
-        pos.x = 900.0f;
+        if (pos.x < -960.0f)
+        {
+            pos.x = 960.0f;
+        }
+        else if (pos.x > 960.0f)
+        {
+            pos.x = -960.0f;
+        }
+
+        if (pos.y < -540.0f)
+        {
+            pos.y = 540.0f;
+        }
+        else if (pos.y > 540.0f)
+        {
+            pos.y = -540.0f;
+        }
     }
-    else if (pos.x > 900.0f)
+    else
     {
-        pos.x = -900.0f;
+        if (pos.x < -960.0f || pos.x > 960.0f || pos.y < -540.0f || pos.y > 540.0f)
+        {
+            owner_->setState(Actor::State::EDead);
+        }
     }
 
-    if (pos.y < -450.0f)
-    {
-        pos.y = 450.0f;
-    }
-    else if (pos.y > 450.0f)
-    {
-        pos.y = -450.0f;
-    }
     owner_->setPosition(pos);
 }

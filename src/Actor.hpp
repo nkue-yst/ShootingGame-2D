@@ -43,6 +43,9 @@ public:
     void setRotation(const float rot) { rotation_ = rot; need_recompute_world_transform_ = true; }
     void setScale(const float scl) { scale_ = scl; need_recompute_world_transform_ = true; }
 
+    bool getIsPlayer() const { return is_player_; }
+    void setIsPlayer(const bool is_player) { is_player_ = is_player; }
+
 private:
     State state_;
 
@@ -54,4 +57,5 @@ private:
     
     std::vector<class Component*> components_;
     class Game* game_;
+    bool is_player_;
 };

@@ -1,5 +1,6 @@
 #include "PlayerActor.hpp"
 #include "Bullet.hpp"
+#include "CircleCollisionComponent.hpp"
 #include "DrawComponent.hpp"
 #include "Game.hpp"
 #include "InputComponent.hpp"

@@ -1,7 +1,9 @@
 #include "Bullet.hpp"
+#include "CircleCollisionComponent.hpp"
 #include "DrawComponent.hpp"
 #include "Game.hpp"
 #include "MoveComponent.hpp"
+#include "PlayerActor.hpp"
 
 Bullet::Bullet(Game* game)
     :Actor(game)
@@ -12,6 +14,9 @@ Bullet::Bullet(Game* game)
 
     MoveComponent* m_compo = new MoveComponent(this);
     m_compo->setForwardSpeed(500.0f);
+
+    collision_ = new CircleCollisionComponent(this);
+    collision_->setRadius(10.0f);
 }
 
 void Bullet::updateActor(float dt)
